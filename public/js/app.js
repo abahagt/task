@@ -50794,7 +50794,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "Form"
+    name: "Form",
+    data: function data() {
+        return {
+            message: {
+                name: null,
+                price: null
+            }
+        };
+    },
+    methods: {
+        send: function send() {
+            var _this = this;
+
+            axios.post('/api/add-action', this.message).then(function (response) {
+                _this.message = {};
+                alert('done');
+            }).catch(function (error) {
+                alert('error');
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -50805,54 +50825,83 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h4", [_vm._v("Form")]),
+  return _c("div", { staticClass: "container" }, [
+    _c("h4", [_vm._v("Form")]),
+    _vm._v(" "),
+    _c("form", [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "exampleInput" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.message.name,
+              expression: "message.name"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", id: "exampleInput", placeholder: "Your Name" },
+          domProps: { value: _vm.message.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.message, "name", $event.target.value)
+            }
+          }
+        })
+      ]),
       _vm._v(" "),
-      _c("form", [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "exampleInput" } }, [_vm._v("Name")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "text",
-              id: "exampleInput",
-              placeholder: "Your Name"
-            }
-          })
-        ]),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "exampleInputprice" } }, [_vm._v("Price")]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "exampleInputprice" } }, [
-            _vm._v("Price")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "text",
-              id: "exampleInputprice",
-              placeholder: "Price"
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.message.price,
+              expression: "message.price"
             }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [_vm._v("Submit")]
-        )
-      ])
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "exampleInputprice",
+            placeholder: "Price"
+          },
+          domProps: { value: _vm.message.price },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.message, "price", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit" },
+          on: {
+            click: function($event) {
+              _vm.send()
+            }
+          }
+        },
+        [_vm._v("Submit")]
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
