@@ -17,4 +17,8 @@ class AddController extends Controller
 
         return view()>with(['success' => 'done']);
     }
+
+    public function show(){
+        
+    }
 }

@@ -34,7 +34,6 @@
 
                 }).catch((error) => {
                     flash('Error', 'danger');
-
                 });
             }
         }

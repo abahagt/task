@@ -12,8 +12,8 @@
             <tbody>
             <tr>
                 <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
+                <td>{{info.name}}</td>
+                <td>{{info.name}}</td>
             </tr>
             </tbody>
         </table>
@@ -22,6 +22,22 @@
 
 <script>
     export default {
-        name: "DisplayData"
+        name: "DisplayData",
+        data() {
+            return {
+                info: {},
+            }
+        },
+        methods: {
+            getResults: function(){
+                axios.get(`/api/get-data`)
+                    .then((response) => {
+                        flash('done', 'success');
+                    })
+                    .catch((error) => {
+                        flash('Error', 'danger');
+                    });
+            },
+        }
     }
 </script>
