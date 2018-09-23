@@ -10,7 +10,7 @@
                 <label for="exampleInputprice">Price</label>
                 <input type="text" class="form-control" id="exampleInputprice" placeholder="Price" v-model="message.price">
             </div>
-            <button type="submit" class="btn btn-primary" @click="send()">Submit</button>
+            <a type="submit" class="btn btn-primary" @click="send()">Submit</a>
         </form>
     </div>
 </template>
@@ -28,11 +28,13 @@
         },
         methods: {
             send: function () {
-                axios.post(`/api/add-action`, this.message).then((response) => {
+                axios.post(`/api/add`, this.message).then((response) => {
                     this.message = {};
-                    alert('done');
+                    flash('done', 'success');
+
                 }).catch((error) => {
-                    alert('error')
+                    flash('Error', 'danger');
+
                 });
             }
         }

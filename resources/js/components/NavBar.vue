@@ -32,7 +32,3 @@
         name: "NavBar"
     }
 </script>
-
-<style scoped>
-
-</style>

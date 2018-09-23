@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Add;
 
 class AddController extends Controller
 {
@@ -16,6 +15,6 @@ class AddController extends Controller
 
         Add::create($request->all());
 
-        return redirect()->with(['success' => 'تم إضافة الكتاب']);
+        return view()>with(['success' => 'done']);
     }
 }

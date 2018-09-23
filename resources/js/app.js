@@ -16,7 +16,15 @@ import VueRouter from 'vue-router';
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//Global components
+Vue.component('flash', require('./components/Flash'));
 
+//Register events
+window.events = new Vue();
+
+window.flash = (message, type) => {
+    window.events.$emit('flash', message, type);
+};
 // Internal
 import App from './app/views/App';
 
