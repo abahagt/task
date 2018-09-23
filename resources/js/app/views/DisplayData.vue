@@ -13,7 +13,7 @@
             <tr>
                 <th scope="row">1</th>
                 <td>{{info.name}}</td>
-                <td>{{info.name}}</td>
+                <td>{{info.price}}</td>
             </tr>
             </tbody>
         </table>
@@ -26,18 +26,20 @@
         data() {
             return {
                 info: {},
+                uName: '',
+                pPrice: '',
             }
         },
-        methods: {
-            getResults: function(){
-                axios.get(`/api/get-data`)
-                    .then((response) => {
-                        flash('done', 'success');
-                    })
-                    .catch((error) => {
-                        flash('Error', 'danger');
-                    });
-            },
-        }
+        created() {
+            axios.get(`/api/show`)
+                .then((response) => {
+                    this.info = response.data;
+                    this.uName = this.info.name;
+                    this.pPrice = this.info.price;
+                })
+                .catch((error) => {
+                    flash('Error', 'danger');
+                });
+        },
     }
 </script>

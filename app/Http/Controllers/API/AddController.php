@@ -19,6 +19,6 @@ class AddController extends Controller
     }
 
     public function show(){
-        
+
     }
 }

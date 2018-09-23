@@ -51009,18 +51009,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: "DisplayData",
     data: function data() {
         return {
-            info: {}
+            info: {},
+            uName: '',
+            pPrice: ''
         };
     },
+    created: function created() {
+        var _this = this;
 
-    methods: {
-        getResults: function getResults() {
-            axios.get('/api/get-data').then(function (response) {
-                flash('done', 'success');
-            }).catch(function (error) {
-                flash('Error', 'danger');
-            });
-        }
+        axios.get('/api/show').then(function (response) {
+            _this.info = response.data;
+            _this.uName = _this.info.name;
+            _this.pPrice = _this.info.price;
+        }).catch(function (error) {
+            flash('Error', 'danger');
+        });
     }
 });
 
@@ -51044,7 +51047,7 @@ var render = function() {
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(_vm.info.name))]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.info.name))])
+          _c("td", [_vm._v(_vm._s(_vm.info.price))])
         ])
       ])
     ])
