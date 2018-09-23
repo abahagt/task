@@ -13894,7 +13894,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_views_App__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_views_App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__app_views_App__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__(52);
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -13925,6 +13924,7 @@ window.flash = function (message, type) {
 
 
 // Routing
+
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */](__WEBPACK_IMPORTED_MODULE_3__routes__["a" /* routes */]);
@@ -50673,6 +50673,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'app',
     components: { Flash: __WEBPACK_IMPORTED_MODULE_0__components_Flash___default.a }
@@ -51005,12 +51006,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "DisplayData",
     data: function data() {
         return {
-            info: []
+            info: [],
+            total: 0
         };
     },
     created: function created() {
@@ -51018,6 +51022,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         axios.get('/api/show').then(function (response) {
             _this.info = response.data;
+            for (var i = 0; i < _this.info.length; i++) {
+                _this.total += Number(_this.info[i].price);
+            }
         }).catch(function (error) {
             flash('Error', 'danger');
         });
@@ -51040,15 +51047,22 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.info, function(item) {
-          return _c("tr", [
-            _c("td"),
+        [
+          _vm._l(_vm.info, function(item) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(item.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(item.price))])
+            ])
+          }),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("Total")]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(item.name))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(item.price))])
+            _c("td", [_vm._v(_vm._s(_vm.total))])
           ])
-        })
+        ],
+        2
       )
     ])
   ])
@@ -51060,8 +51074,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Price")])

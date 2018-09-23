@@ -7,6 +7,7 @@
 <script>
 
     import Flash from "../../components/Flash";
+
     export default {
         name: 'app',
         components: {Flash}

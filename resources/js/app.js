@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -30,6 +29,7 @@ import App from './app/views/App';
 
 // Routing
 import {routes} from './routes';
+
 Vue.use(VueRouter);
 const router = new VueRouter(routes);
 
