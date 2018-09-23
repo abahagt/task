@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
