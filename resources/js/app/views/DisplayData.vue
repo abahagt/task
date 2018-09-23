@@ -11,9 +11,9 @@
             </thead>
             <tbody>
             <tr v-for="item in info">
-                <th scope="row">1</th>
-                <td>{{info.name}}</td>
-                <td>{{info.price}}</td>
+                <td></td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
             </tr>
             </tbody>
         </table>
@@ -26,16 +26,12 @@
         data() {
             return {
                 info: [],
-                uName: '',
-                pPrice: '',
             }
         },
         created() {
             axios.get(`/api/show`)
                 .then((response) => {
-                    this.info = response;
-                    this.uName = this.info.name;
-                    this.pPrice = this.info.price;
+                    this.info = response.data;
                 })
                 .catch((error) => {
                     flash('Error', 'danger');

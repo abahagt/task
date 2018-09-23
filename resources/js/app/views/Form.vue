@@ -31,7 +31,7 @@
                 axios.post(`/api/add`, this.message).then((response) => {
                     this.message = {};
                     flash('done', 'success');
-
+                    window.location = `/display/`;
                 }).catch((error) => {
                     flash('Error', 'danger');
                 });

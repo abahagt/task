@@ -14,9 +14,19 @@ class AddController extends Controller
             'price' => 'required',
         ]);
 
-        Add::create($request->all());
+        $data = json_decode(file_get_contents(storage_path('data/data.json')));
 
-        return view() > with(['success' => 'done']);
+        $newObject = new \stdClass();
+
+        $newObject->name = $request->name;
+        $newObject->price = $request->price;
+
+        $data[] = $newObject;
+
+        file_put_contents(storage_path('data/data.json'), json_encode($data));
+
+        return response()->json(['message' => 'data has been added'], 200);
+
     }
 
     public function show()

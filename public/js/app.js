@@ -50828,6 +50828,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/api/add', this.message).then(function (response) {
                 _this.message = {};
                 flash('done', 'success');
+                window.location = '/display/';
             }).catch(function (error) {
                 flash('Error', 'danger');
             });
@@ -51009,18 +51010,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: "DisplayData",
     data: function data() {
         return {
-            info: [],
-            uName: '',
-            pPrice: ''
+            info: []
         };
     },
     created: function created() {
         var _this = this;
 
         axios.get('/api/show').then(function (response) {
-            _this.info = response;
-            _this.uName = _this.info.name;
-            _this.pPrice = _this.info.price;
+            _this.info = response.data;
         }).catch(function (error) {
             flash('Error', 'danger');
         });
@@ -51045,11 +51042,11 @@ var render = function() {
         "tbody",
         _vm._l(_vm.info, function(item) {
           return _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
+            _c("td"),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.info.name))]),
+            _c("td", [_vm._v(_vm._s(item.name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.info.price))])
+            _c("td", [_vm._v(_vm._s(item.price))])
           ])
         })
       )
