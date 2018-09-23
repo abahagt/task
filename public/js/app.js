@@ -51009,7 +51009,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: "DisplayData",
     data: function data() {
         return {
-            info: {},
+            info: [],
             uName: '',
             pPrice: ''
         };
@@ -51018,7 +51018,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         axios.get('/api/show').then(function (response) {
-            _this.info = response.data;
+            _this.info = response;
             _this.uName = _this.info.name;
             _this.pPrice = _this.info.price;
         }).catch(function (error) {
@@ -51041,15 +51041,18 @@ var render = function() {
     _c("table", { staticClass: "table" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.info.name))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(_vm.info.price))])
-        ])
-      ])
+      _c(
+        "tbody",
+        _vm._l(_vm.info, function(item) {
+          return _c("tr", [
+            _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.info.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm.info.price))])
+          ])
+        })
+      )
     ])
   ])
 }

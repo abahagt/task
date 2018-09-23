@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 
 class AddController extends Controller
 {
-    public function send(Request $request) {
+    public function send(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required',
             'price' => 'required',
@@ -15,10 +16,11 @@ class AddController extends Controller
 
         Add::create($request->all());
 
-        return view()>with(['success' => 'done']);
+        return view() > with(['success' => 'done']);
     }
 
-    public function show(){
-
+    public function show()
+    {
+        return response(file_get_contents(storage_path('data/data.json')));
     }
 }

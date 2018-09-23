@@ -10,7 +10,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr v-for="item in info">
                 <th scope="row">1</th>
                 <td>{{info.name}}</td>
                 <td>{{info.price}}</td>
@@ -25,7 +25,7 @@
         name: "DisplayData",
         data() {
             return {
-                info: {},
+                info: [],
                 uName: '',
                 pPrice: '',
             }
@@ -33,7 +33,7 @@
         created() {
             axios.get(`/api/show`)
                 .then((response) => {
-                    this.info = response.data;
+                    this.info = response;
                     this.uName = this.info.name;
                     this.pPrice = this.info.price;
                 })
